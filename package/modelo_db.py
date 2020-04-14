@@ -27,26 +27,27 @@ def dict_factory(cursor, row):
 conn.row_factory = dict_factory
 
 conn.execute('''CREATE TABLE if not exists pacientes 
-(pat_id INTEGER PRIMARY KEY AUTOINCREMENT,
-pat_first_name TEXT NOT NULL,
-pat_last_name TEXT NOT NULL,
-pat_insurance_no TEXT NOT NULL,
-pat_ph_no TEXT NOT NULL,
-pat_date DATE DEFAULT (datetime('now','localtime')),
-pat_address TEXT NOT NULL);''')
+(pac_id INTEGER PRIMARY KEY AUTOINCREMENT,
+pac_nombre TEXT NOT NULL,
+pac_apellido TEXT NOT NULL,
+pac_dni TEXT NOT NULL,
+pac_tel TEXT NOT NULL,
+pac_crea_fecha DATE DEFAULT (datetime('now','localtime')),
+pac_dir TEXT NOT NULL);''')
 
 conn.execute('''CREATE TABLE if not exists terapistas
-(doc_id INTEGER PRIMARY KEY AUTOINCREMENT,
-doc_first_name TEXT NOT NULL,
-doc_last_name TEXT NOT NULL,
-doc_ph_no TEXT NOT NULL,
-doc_date DATE DEFAULT (datetime('now','localtime')),
-doc_address TEXT NOT NULL);''')
+(ter_id INTEGER PRIMARY KEY AUTOINCREMENT,
+ter_nombre TEXT NOT NULL,
+ter_apellido TEXT NOT NULL,
+ter_tel TEXT NOT NULL,
+ter_cre_fecha DATE DEFAULT (datetime('now','localtime')),
+ter_dir TEXT NOT NULL);''')
+
 
 conn.execute('''CREATE TABLE if not exists turnos
-(app_id INTEGER PRIMARY KEY AUTOINCREMENT,
-pat_id INTEGER NOT NULL,
-doc_id INTEGER NOT NULL,
-appointment_date DATE NOT NULL,
-FOREIGN KEY(pat_id) REFERENCES pacientes(pat_id),
-FOREIGN KEY(doc_id) REFERENCES terapistas(doc_id));''')
+(turno_id INTEGER PRIMARY KEY AUTOINCREMENT,
+pac_id INTEGER NOT NULL,
+ter_id INTEGER NOT NULL,
+turno_fecha DATE NOT NULL,
+FOREIGN KEY(pac_id) REFERENCES pacientes(pac_id),
+FOREIGN KEY(ter_id) REFERENCES terapistas(ter_id));''')

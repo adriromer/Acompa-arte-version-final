@@ -36,22 +36,22 @@ POST addPatient
 curl --location --request POST 'http://127.0.0.1:5000/patient' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-  "pat_first_name": "Nancy",
-  "pat_last_name": "Joes",
-  "pat_insurance_no": "IN-3123",
-  "pat_ph_no": "2178013290",
-  "pat_address": "3 cadlelight 2"
+  "pac_nombre": "Nancy",
+  "pac_apellido": "Joes",
+  "pac_dni": "IN-3123",
+  "pac_tel": "2178013290",
+  "pac_dir": "3 cadlelight 2"
 }'
 
 PUT updatePatient
 curl --location --request PUT 'http://127.0.0.1:5000/patient/2' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-  "pat_first_name": "Tushar",
-  "pat_last_name": "posst",
-  "pat_insurance_no": "posst",
-  "pat_ph_no": "posst",
-  "pat_address": "posst"
+  "pac_nombre": "Tushar",
+  "pac_apellido": "posst",
+  "pac_dni": "posst",
+  "pac_tel": "posst",
+  "pac_dir": "posst"
 }'
 
 DEL deletePatient
@@ -65,20 +65,20 @@ POST addDoctor
 curl --location --request POST 'http://127.0.0.1:5000/doctor' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-  "doc_first_name": "Tony",
-  "doc_last_name": "Jonson",
-  "doc_ph_no": "9967544572",
-  "doc_address": "2 candlewood tree"
+  "ter_nombre": "Tony",
+  "ter_apellido": "Jonson",
+  "ter_tel": "9967544572",
+  "ter_dir": "2 candlewood tree"
 }'
 
 PUT updateDoctor
 curl --location --request PUT 'http://127.0.0.1:5000/doctor/1' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-  "doc_first_name": "satish",
-  "doc_last_name": "posst",
-  "doc_ph_no": "posst",
-  "doc_address": "posst"
+  "ter_nombre": "satish",
+  "ter_apellido": "posst",
+  "ter_tel": "posst",
+  "ter_dir": "posst"
 }'
 
 
@@ -95,9 +95,9 @@ POST addAppointment
 curl --location --request POST 'http://127.0.0.1:5000/appointment' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-  "doc_id": 1,
-  "pat_id": 1,
-  "appointment_date":"2007-01-01 10:00:00"
+  "ter_id": 1,
+  "pac_id": 1,
+  "turno_fecha":"2007-01-01 10:00:00"
 }'
 
 GET getAppointment
@@ -107,8 +107,8 @@ PUT updateAppoinetment
 curl --location --request PUT 'http://127.0.0.1:5000/appointment/1' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "doc_id":1,
-    "pat_id": 2
+    "ter_id":1,
+    "pac_id": 2
     
 }'
 

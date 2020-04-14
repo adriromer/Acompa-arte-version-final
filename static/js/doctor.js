@@ -112,16 +112,16 @@ $(document).ready(function () {
                   "aaSorting": [],
                 aoColumns: [
                     {
-                        mData: 'doc_first_name'
+                        mData: 'ter_nombre'
                     },
                     {
-                        mData: 'doc_last_name'
+                        mData: 'ter_apellido'
                     },
                     {
-                        mData: 'doc_address'
+                        mData: 'ter_dir'
                     },
                     {
-                        mData: 'doc_ph_no'
+                        mData: 'ter_tel'
                     },
                     {
                         mRender: function (o) {
@@ -138,7 +138,7 @@ $(document).ready(function () {
             $('#datatable4 tbody').on('click', '.delete-btn', function () {
                 var data = table.row($(this).parents('tr')).data();
                 console.log(data)
-                deleteDoctor(data.doc_id)
+                deleteDoctor(data.ter_id)
 
             });
             $('.btn-edit').one("click", function (e) {
@@ -153,7 +153,7 @@ $(document).ready(function () {
                         console.log(instance.isValid())
                         if (instance.isValid()) {
                             jsondata = $('#detailform').serializeJSON();
-                            updateDoctor(jsondata, data.doc_id)
+                            updateDoctor(jsondata, data.ter_id)
                         }
 
                     })

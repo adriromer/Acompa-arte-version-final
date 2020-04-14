@@ -80,8 +80,8 @@ swal({
         $.ajax(settings).done(function (response) {
 
         for(i=0;i<response.length;i++){
-        response[i].pat_fullname=response[i].pat_first_name+" "+response[i].pat_last_name
-        response[i].doc_fullname=response[i].doc_first_name+" "+response[i].doc_last_name
+        response[i].pat_fullname=response[i].pac_nombre+" "+response[i].pac_apellido
+        response[i].doc_fullname=response[i].ter_nombre+" "+response[i].ter_apellido
         }
 
 
@@ -101,7 +101,7 @@ swal({
                         mData: 'pat_fullname'
                     },
                     {
-                        mData: 'appointment_date'
+                        mData: 'turno_fecha'
                     },
                     {
                         mRender: function (o) {
@@ -113,7 +113,7 @@ swal({
             $('#datatable4 tbody').on('click', '.delete-btn', function () {
                 var data = table.row($(this).parents('tr')).data();
                 console.log(data)
-                deleteAppointment(data.app_id)
+                deleteAppointment(data.turno_id)
 
             });
 
@@ -178,8 +178,8 @@ var doctorSelect=""
 
         for(i=0;i<response.length;i++){
 
-        response[i].doc_fullname=response[i].doc_first_name+" "+response[i].doc_last_name
-        doctorSelect +="<option value="+response[i].doc_id+">"+response[i].doc_fullname+"</option>"
+        response[i].doc_fullname=response[i].ter_nombre+" "+response[i].ter_apellido
+        doctorSelect +="<option value="+response[i].ter_id+">"+response[i].doc_fullname+"</option>"
         }
 
 
@@ -200,8 +200,8 @@ var patientSelect=""
 
         $.ajax(settings).done(function (response) {
          for(i=0;i<response.length;i++){
-          response[i].pat_fullname=response[i].pat_first_name+" "+response[i].pat_last_name
-        patientSelect +="<option value="+response[i].pat_id+">"+response[i].pat_fullname+"</option>"
+          response[i].pat_fullname=response[i].pac_nombre+" "+response[i].pac_apellido
+        patientSelect +="<option value="+response[i].pac_id+">"+response[i].pat_fullname+"</option>"
         }
 
                 })

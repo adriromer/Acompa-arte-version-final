@@ -112,19 +112,19 @@ swal({
                  "aaSorting": [],
                 aoColumns: [
                     {
-                        mData: 'pat_first_name'
+                        mData: 'pac_nombre'
                     },
                     {
-                        mData: 'pat_last_name'
+                        mData: 'pac_apellido'
                     },
                     {
-                        mData: 'pat_insurance_no'
+                        mData: 'pac_dni'
                     },
                     {
-                        mData: 'pat_address'
+                        mData: 'pac_dir'
                     },
                     {
-                        mData: 'pat_ph_no'
+                        mData: 'pac_tel'
                     },
                     {
                         mRender: function (o) {
@@ -141,7 +141,7 @@ swal({
             $('#datatable4 tbody').on('click', '.delete-btn', function () {
                 var data = table.row($(this).parents('tr')).data();
                 console.log(data)
-                deletePatient(data.pat_id)
+                deletePatient(data.pac_id)
 
             });
             $('.btn-edit').one("click", function(e) {
@@ -156,7 +156,7 @@ swal({
                     console.log(instance.isValid())
                     if(instance.isValid()){
                         jsondata = $('#detailform').serializeJSON();
-                        updatePatient(jsondata, data.pat_id)
+                        updatePatient(jsondata, data.pac_id)
                         }
 
                     })

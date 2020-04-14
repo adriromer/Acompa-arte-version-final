@@ -8,7 +8,7 @@ class Terapistas(Resource):
     def get(self):
         """Obtiene una lista de todos los terapistas"""
 
-        doctors = conn.execute("SELECT * FROM terapistas ORDER BY doc_date DESC").fetchall()
+        doctors = conn.execute("SELECT * FROM terapistas ORDER BY ter_cre_fecha DESC").fetchall()
         return doctors
 
 
@@ -17,12 +17,12 @@ class Terapistas(Resource):
         """Agregar un nuevo Doctor"""
 
         doctorInput = request.get_json(force=True)
-        doc_first_name=doctorInput['doc_first_name']
-        doc_last_name = doctorInput['doc_last_name']
-        doc_ph_no = doctorInput['doc_ph_no']
-        doc_address = doctorInput['doc_address']
-        doctorInput['doc_id']=conn.execute('''INSERT INTO terapistas(doc_first_name,doc_last_name,doc_ph_no,doc_address)
-            VALUES(?,?,?,?)''', (doc_first_name, doc_last_name,doc_ph_no,doc_address)).lastrowid
+        ter_nombre=doctorInput['ter_nombre']
+        ter_apellido = doctorInput['ter_apellido']
+        ter_tel = doctorInput['ter_tel']
+        ter_dir = doctorInput['ter_dir']
+        doctorInput['ter_id']=conn.execute('''INSERT INTO terapistas(ter_nombre,ter_apellido,ter_tel,ter_dir)
+            VALUES(?,?,?,?)''', (ter_nombre, ter_apellido,ter_tel,ter_dir)).lastrowid
         conn.commit()
         return doctorInput
 
@@ -33,13 +33,13 @@ class Terapista(Resource):
     def get(self,id):
         """Obtiene los datos de un terapista por su ID"""
 
-        doctor = conn.execute("SELECT * FROM terapistas WHERE doc_id=?",(id,)).fetchall()
+        doctor = conn.execute("SELECT * FROM terapistas WHERE ter_id=?",(id,)).fetchall()
         return doctor
 
     def delete(self, id):
         """Borra un terapista por ID"""
 
-        conn.execute("DELETE FROM terapistas WHERE doc_id=?", (id,))
+        conn.execute("DELETE FROM terapistas WHERE ter_id=?", (id,))
         conn.commit()
         return {'msg': 'sucessfully deleted'}
 
@@ -47,12 +47,12 @@ class Terapista(Resource):
         """Actualiza un terapista por su ID"""
 
         doctorInput = request.get_json(force=True)
-        doc_first_name=doctorInput['doc_first_name']
-        doc_last_name = doctorInput['doc_last_name']
-        doc_ph_no = doctorInput['doc_ph_no']
-        doc_address = doctorInput['doc_address']
+        ter_nombre=doctorInput['ter_nombre']
+        ter_apellido = doctorInput['ter_apellido']
+        ter_tel = doctorInput['ter_tel']
+        ter_dir = doctorInput['ter_dir']
         conn.execute(
-            "UPDATE terapistas SET doc_first_name=?,doc_last_name=?,doc_ph_no=?,doc_address=? WHERE doc_id=?",
-            (doc_first_name, doc_last_name, doc_ph_no, doc_address, id))
+            "UPDATE terapistas SET ter_nombre=?,ter_apellido=?,ter_tel=?,ter_dir=? WHERE ter_id=?",
+            (ter_nombre, ter_apellido, ter_tel, ter_dir, id))
         conn.commit()
         return doctorInput

@@ -14,7 +14,7 @@ class Pacientes(Resource):
     def get(self):
         """Api que obtiene todos los pacientes de la base"""
 
-        patients = conn.execute("SELECT * FROM pacientes  ORDER BY pat_date DESC").fetchall()
+        patients = conn.execute("SELECT * FROM pacientes  ORDER BY pac_crea_fecha DESC").fetchall()
         return patients
 
 
@@ -23,13 +23,13 @@ class Pacientes(Resource):
         """Api para agregar un paciente a la base"""
 
         patientInput = request.get_json(force=True)
-        pat_first_name=patientInput['pat_first_name']
-        pat_last_name = patientInput['pat_last_name']
-        pat_insurance_no = patientInput['pat_insurance_no']
-        pat_ph_no = patientInput['pat_ph_no']
-        pat_address = patientInput['pat_address']
-        patientInput['pat_id']=conn.execute('''INSERT INTO pacientes(pat_first_name,pat_last_name,pat_insurance_no,pat_ph_no,pat_address)
-            VALUES(?,?,?,?,?)''', (pat_first_name, pat_last_name, pat_insurance_no,pat_ph_no,pat_address)).lastrowid
+        pac_nombre=patientInput['pac_nombre']
+        pac_apellido = patientInput['pac_apellido']
+        pac_dni = patientInput['pac_dni']
+        pac_tel = patientInput['pac_tel']
+        pac_dir = patientInput['pac_dir']
+        patientInput['pac_id']=conn.execute('''INSERT INTO pacientes(pac_nombre,pac_apellido,pac_dni,pac_tel,pac_dir)
+            VALUES(?,?,?,?,?)''', (pac_nombre, pac_apellido, pac_dni, pac_tel, pac_dir)).lastrowid
         conn.commit()
         return patientInput
 
@@ -39,13 +39,13 @@ class Paciente(Resource):
     def get(self,id):
         """api que obtiene todos los detalles de un paciente por ID"""
 
-        patient = conn.execute("SELECT * FROM pacientes WHERE pat_id=?",(id,)).fetchall()
+        patient = conn.execute("SELECT * FROM pacientes WHERE pac_id=?", (id,)).fetchall()
         return patient
 
     def delete(self,id):
         """Api que borra un paciente por su ID"""
 
-        conn.execute("DELETE FROM pacientes WHERE pat_id=?",(id,))
+        conn.execute("DELETE FROM pacientes WHERE pac_id=?", (id,))
         conn.commit()
         return {'msg': 'sucessfully deleted'}
 
@@ -53,12 +53,13 @@ class Paciente(Resource):
         """Api que actualiza un paciente por su id"""
 
         patientInput = request.get_json(force=True)
-        pat_first_name = patientInput['pat_first_name']
-        pat_last_name = patientInput['pat_last_name']
-        pat_insurance_no = patientInput['pat_insurance_no']
-        pat_ph_no = patientInput['pat_ph_no']
-        pat_address = patientInput['pat_address']
-        conn.execute("UPDATE pacientes SET pat_first_name=?,pat_last_name=?,pat_insurance_no=?,pat_ph_no=?,pat_address=? WHERE pat_id=?",
-                     (pat_first_name, pat_last_name, pat_insurance_no,pat_ph_no,pat_address,id))
+        pac_nombre = patientInput['pac_nombre']
+        pac_apellido = patientInput['pac_apellido']
+        pac_dni = patientInput['pac_dni']
+        pac_tel = patientInput['pac_tel']
+        pac_dir = patientInput['pac_dir']
+        conn.execute(
+            "UPDATE pacientes SET pac_nombre=?,pac_apellido=?,pac_dni=?,pac_tel=?,pac_dir=? WHERE pac_id=?",
+            (pac_nombre, pac_apellido, pac_dni,pac_tel,pac_dir,id))
         conn.commit()
         return patientInput
