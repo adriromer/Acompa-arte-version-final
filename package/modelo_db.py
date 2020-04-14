@@ -1,9 +1,12 @@
 #Adrian Romero - Efip 1 Marzo 2020
 
 import sqlite3
+import mysql.connector
 import json
+
 with open('config.json') as data_file:
     config = json.load(data_file)
+
 
 conn = sqlite3.connect(config['database'], check_same_thread=False, timeout=10)
 print("debug para confirmar la conexion - info DB ", config)
@@ -22,8 +25,6 @@ def dict_factory(cursor, row):
 
 
 conn.row_factory = dict_factory
-
-
 
 conn.execute('''CREATE TABLE if not exists patient
 (pat_id INTEGER PRIMARY KEY AUTOINCREMENT,
