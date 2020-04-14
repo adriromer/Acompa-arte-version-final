@@ -5,13 +5,13 @@ from package.modelo_db import conn
 
 
 
-class Appointments(Resource):
+class Turnos(Resource):
     """Apis de actividades de turnos"""
 
     def get(self):
         """trae todos los turnos en forma de Json"""
 
-        appointment = conn.execute("SELECT p.*,d.*,a.* from appointment a LEFT JOIN patient p ON a.pat_id = p.pat_id LEFT JOIN doctor d ON a.doc_id = d.doc_id ORDER BY appointment_date DESC").fetchall()
+        appointment = conn.execute("SELECT p.*,d.*,a.* from turnos a LEFT JOIN pacientes p ON a.pat_id = p.pat_id LEFT JOIN terapistas d ON a.doc_id = d.doc_id ORDER BY appointment_date DESC").fetchall()
         return appointment
 
     def post(self):
@@ -21,27 +21,27 @@ class Appointments(Resource):
         pat_id = appointment['pat_id']
         doc_id = appointment['doc_id']
         appointment_date = appointment['appointment_date']
-        appointment['app_id'] = conn.execute('''INSERT INTO appointment(pat_id,doc_id,appointment_date)
+        appointment['app_id'] = conn.execute('''INSERT INTO turnos(pat_id,doc_id,appointment_date)
             VALUES(?,?,?)''', (pat_id, doc_id,appointment_date)).lastrowid
         conn.commit()
         return appointment
 
 
 
-class Appointment(Resource):
+class Turno(Resource):
     """Api que contiene toda la actividad con un turno unico"""
 
     def get(self,id):
         """Obtiene un detalles de un turno por su ID"""
 
-        appointment = conn.execute("SELECT * FROM appointment WHERE app_id=?",(id,)).fetchall()
+        appointment = conn.execute("SELECT * FROM turnos WHERE app_id=?",(id,)).fetchall()
         return appointment
 
 
     def delete(self,id):
         """Borra turno por ID"""
 
-        conn.execute("DELETE FROM appointment WHERE app_id=?",(id,))
+        conn.execute("DELETE FROM turnos WHERE app_id=?",(id,))
         conn.commit()
         return {'msg': 'sucessfully deleted'}
 
@@ -51,7 +51,7 @@ class Appointment(Resource):
         appointment = request.get_json(force=True)
         pat_id = appointment['pat_id']
         doc_id = appointment['doc_id']
-        conn.execute("UPDATE appointment SET pat_id=?,doc_id=? WHERE app_id=?",
+        conn.execute("UPDATE turnos SET pat_id=?,doc_id=? WHERE app_id=?",
                      (pat_id, doc_id, id))
         conn.commit()
         return appointment

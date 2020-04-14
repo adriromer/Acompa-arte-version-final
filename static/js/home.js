@@ -3,7 +3,7 @@ $(document).ready(function () {
 var settings = {
   "async": true,
   "crossDomain": true,
-  "url": "common",
+  "url": "compartida",
   "method": "GET",
   "headers": {
     "cache-control": "no-cache"

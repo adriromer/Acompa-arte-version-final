@@ -14,7 +14,7 @@ class Pacientes(Resource):
     def get(self):
         """Api que obtiene todos los pacientes de la base"""
 
-        patients = conn.execute("SELECT * FROM patient  ORDER BY pat_date DESC").fetchall()
+        patients = conn.execute("SELECT * FROM pacientes  ORDER BY pat_date DESC").fetchall()
         return patients
 
 
@@ -28,7 +28,7 @@ class Pacientes(Resource):
         pat_insurance_no = patientInput['pat_insurance_no']
         pat_ph_no = patientInput['pat_ph_no']
         pat_address = patientInput['pat_address']
-        patientInput['pat_id']=conn.execute('''INSERT INTO patient(pat_first_name,pat_last_name,pat_insurance_no,pat_ph_no,pat_address)
+        patientInput['pat_id']=conn.execute('''INSERT INTO pacientes(pat_first_name,pat_last_name,pat_insurance_no,pat_ph_no,pat_address)
             VALUES(?,?,?,?,?)''', (pat_first_name, pat_last_name, pat_insurance_no,pat_ph_no,pat_address)).lastrowid
         conn.commit()
         return patientInput
@@ -39,13 +39,13 @@ class Paciente(Resource):
     def get(self,id):
         """api que obtiene todos los detalles de un paciente por ID"""
 
-        patient = conn.execute("SELECT * FROM patient WHERE pat_id=?",(id,)).fetchall()
+        patient = conn.execute("SELECT * FROM pacientes WHERE pat_id=?",(id,)).fetchall()
         return patient
 
     def delete(self,id):
         """Api que borra un paciente por su ID"""
 
-        conn.execute("DELETE FROM patient WHERE pat_id=?",(id,))
+        conn.execute("DELETE FROM pacientes WHERE pat_id=?",(id,))
         conn.commit()
         return {'msg': 'sucessfully deleted'}
 
@@ -58,7 +58,7 @@ class Paciente(Resource):
         pat_insurance_no = patientInput['pat_insurance_no']
         pat_ph_no = patientInput['pat_ph_no']
         pat_address = patientInput['pat_address']
-        conn.execute("UPDATE patient SET pat_first_name=?,pat_last_name=?,pat_insurance_no=?,pat_ph_no=?,pat_address=? WHERE pat_id=?",
+        conn.execute("UPDATE pacientes SET pat_first_name=?,pat_last_name=?,pat_insurance_no=?,pat_ph_no=?,pat_address=? WHERE pat_id=?",
                      (pat_first_name, pat_last_name, pat_insurance_no,pat_ph_no,pat_address,id))
         conn.commit()
         return patientInput
