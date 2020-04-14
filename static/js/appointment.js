@@ -167,7 +167,7 @@ var doctorSelect=""
         var settings = {
             "async": true,
             "crossDomain": true,
-            "url": "doctor",
+            "url": "terapista",
             "method": "GET",
             "headers": {
                 "cache-control": "no-cache"

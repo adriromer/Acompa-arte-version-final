@@ -2,7 +2,7 @@
 
 from flask_restful import Resource, Api, request
 from package.modelo_db import conn
-class Doctors(Resource):
+class Terapistas(Resource):
     """Apis del objeto Doctor/Terapista"""
 
     def get(self):
@@ -26,7 +26,7 @@ class Doctors(Resource):
         conn.commit()
         return doctorInput
 
-class Doctor(Resource):
+class Terapista(Resource):
     """Incluye todas las apis que llevan la actividad de un solo terapista"""
 
 

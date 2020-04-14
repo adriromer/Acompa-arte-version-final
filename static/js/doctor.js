@@ -8,7 +8,7 @@ $(document).ready(function () {
         var settings = {
             "async": true,
             "crossDomain": true,
-            "url": "doctor",
+            "url": "terapista",
             "method": "POST",
             "headers": {
                 "content-type": "application/json",
@@ -33,7 +33,7 @@ $(document).ready(function () {
         var settings = {
             "async": true,
             "crossDomain": true,
-            "url": "doctor/" + id,
+            "url": "terapista/" + id,
             "method": "DELETE",
             "headers": {
                 "cache-control": "no-cache",
@@ -66,7 +66,7 @@ $(document).ready(function () {
         var settings = {
             "async": true,
             "crossDomain": true,
-            "url": "doctor/" + id,
+            "url": "terapista/" + id,
             "method": "PUT",
             "headers": {
                 "content-type": "application/json",
@@ -92,7 +92,7 @@ $(document).ready(function () {
         var settings = {
             "async": true,
             "crossDomain": true,
-            "url": "doctor",
+            "url": "terapista",
             "method": "GET",
             "headers": {
                 "cache-control": "no-cache"

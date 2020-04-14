@@ -3,11 +3,11 @@
 import os
 from sqlalchemy.orm import sessionmaker
 from package.login import *
-from package.modelo_db import conn
+#from package.modelo_db import conn
 from flask import Flask, send_from_directory, render_template, request, redirect, url_for, session, abort
 from flask_restful import Resource, Api, request
 from package.pacientes import Pacientes, Paciente
-from package.terapistas import Doctors, Doctor
+from package.terapistas import Terapistas, Terapista
 from package.turnos import Appointments, Appointment
 from package.compartida import Common
 import json
@@ -26,8 +26,8 @@ api = Api(app)
 
 api.add_resource(Pacientes, '/paciente')
 api.add_resource(Paciente, '/paciente/<int:id>')
-api.add_resource(Doctors, '/doctor')
-api.add_resource(Doctor, '/doctor/<int:id>')
+api.add_resource(Terapistas, '/terapista')
+api.add_resource(Terapista, '/terapista/<int:id>')
 api.add_resource(Appointments, '/turno')
 api.add_resource(Appointment, '/turno/<int:id>')
 api.add_resource(Common, '/common')
