@@ -2,3 +2,5 @@ setup.py
 venv/*
 venvnew/*
 venv*
+desktop.ini
+desktop*
