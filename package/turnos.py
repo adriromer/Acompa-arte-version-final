@@ -12,6 +12,8 @@ class Turnos(Resource):
         """trae todos los turnos en forma de Json"""
 
         appointment = conn.execute("SELECT p.*,d.*,a.* from turnos a LEFT JOIN pacientes p ON a.pac_id = p.pac_id LEFT JOIN terapistas d ON a.ter_id = d.ter_id ORDER BY turno_fecha DESC").fetchall()
+        print("esto es el objeto appointment")
+        print(appointment)
         return appointment
 
     def post(self):
@@ -35,7 +37,10 @@ class Turno(Resource):
         """Obtiene un detalles de un turno por su ID"""
 
         appointment = conn.execute("SELECT * FROM turnos WHERE turno_id=?",(id,)).fetchall()
+
         return appointment
+        print("esto es el objeto appointment")
+        print(appointment)
 
 
     def delete(self,id):
