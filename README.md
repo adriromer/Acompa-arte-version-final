@@ -29,70 +29,70 @@ json para conectar la DB (puede usarse la local dentro con el dump del proyecto 
 
 Apis pueden ser accedidas desde Postman importando el archivo Acompa-arte.postman_collections.json o desde linea de comando con los siguientes curls:
 
-GET getPatient
-curl --location --request GET 'http://127.0.0.1:5000/patient'
+GET Obtener pacientes
+curl --location --request GET 'http://127.0.0.1:5000/paciente'
 
-POST addPatient
-curl --location --request POST 'http://127.0.0.1:5000/patient' \
+POST agregarPacientes
+curl --location --request POST 'http://127.0.0.1:5000/paciente' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-  "pac_nombre": "Nancy",
-  "pac_apellido": "Joes",
-  "pac_dni": "IN-3123",
+  "pac_nombre": "Pepe",
+  "pac_apellido": "Argento",
+  "pac_dni": "29285935",
   "pac_tel": "2178013290",
-  "pac_dir": "3 cadlelight 2"
+  "pac_dir": "las flores 123"
 }'
 
-PUT updatePatient
-curl --location --request PUT 'http://127.0.0.1:5000/patient/2' \
+PUT ActualizarPacientes
+curl --location --request PUT 'http://127.0.0.1:5000/paciente/2' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-  "pac_nombre": "Tushar",
-  "pac_apellido": "posst",
-  "pac_dni": "posst",
-  "pac_tel": "posst",
-  "pac_dir": "posst"
+  "pac_nombre": "Pepe",
+  "pac_apellido": "Argento",
+  "pac_dni": "11111111111",
+  "pac_tel": "11111111",
+  "pac_dir": "Nueva Direccion"
 }'
 
-DEL deletePatient
+DEL BorrarPaciente
 curl --location --request DELETE 'http://127.0.0.1:5000/patient/1'
 
-GET getDoctor
-curl --location --request GET 'http://127.0.0.1:5000/doctor'
+GET ObtenerTerapista
+curl --location --request GET 'http://127.0.0.1:5000/terapista'
 
 
 POST addDoctor
-curl --location --request POST 'http://127.0.0.1:5000/doctor' \
+curl --location --request POST 'http://127.0.0.1:5000/terapista' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-  "ter_nombre": "Tony",
-  "ter_apellido": "Jonson",
+  "ter_nombre": "Gabriel",
+  "ter_apellido": "Rolon",
   "ter_tel": "9967544572",
-  "ter_dir": "2 candlewood tree"
+  "ter_dir": "Calle 42 2929"
 }'
 
-PUT updateDoctor
-curl --location --request PUT 'http://127.0.0.1:5000/doctor/1' \
+PUT ActualizarTerapista
+curl --location --request PUT 'http://127.0.0.1:5000/terapista/1' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-  "ter_nombre": "satish",
-  "ter_apellido": "posst",
-  "ter_tel": "posst",
-  "ter_dir": "posst"
+  "ter_nombre": "Gabriel",
+  "ter_apellido": "Rolon",
+  "ter_tel": "111111",
+  "ter_dir": "nueva direccion"
 }'
 
 
-DEL deleteDoctor
-curl --location --request DELETE 'http://127.0.0.1:5000/doctor/1'
+DEL BorrarTerapista
+curl --location --request DELETE 'http://127.0.0.1:5000/terapista/1'
 
-GET getPatientById
-curl --location --request GET 'http://127.0.0.1:5000/patient/2'
+GET ObtenerPacientePorID
+curl --location --request GET 'http://127.0.0.1:5000/paciente/2'
 
-GET getDoctorById
-curl --location --request GET 'http://127.0.0.1:5000/doctor/2'
+GET ObtenerTerapistaPorID
+curl --location --request GET 'http://127.0.0.1:5000/terapista/2'
 
-POST addAppointment
-curl --location --request POST 'http://127.0.0.1:5000/appointment' \
+POST agregarTurno
+curl --location --request POST 'http://127.0.0.1:5000/turno' \
 --header 'Content-Type: application/json' \
 --data-raw '{
   "ter_id": 1,
@@ -100,11 +100,11 @@ curl --location --request POST 'http://127.0.0.1:5000/appointment' \
   "turno_fecha":"2007-01-01 10:00:00"
 }'
 
-GET getAppointment
-curl --location --request GET 'http://127.0.0.1:5000/appointment'
+GET ObtenerTurno
+curl --location --request GET 'http://127.0.0.1:5000/turno'
 
 PUT updateAppoinetment
-curl --location --request PUT 'http://127.0.0.1:5000/appointment/1' \
+curl --location --request PUT 'http://127.0.0.1:5000/turno/1' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "ter_id":1,
@@ -112,16 +112,13 @@ curl --location --request PUT 'http://127.0.0.1:5000/appointment/1' \
     
 }'
 
-GET getAppointmentById
-curl --location --request GET 'http://127.0.0.1:5000/appointment/1'
+GET ObtenerTurnoPorID
+curl --location --request GET 'http://127.0.0.1:5000/turno/1'
 
 
-DEL deleteAppointment
-curl --location --request DELETE 'http://127.0.0.1:5000/appointment/1'
+DEL BorrarTurno
+curl --location --request DELETE 'http://127.0.0.1:5000/turno/1'
 
-
-GET getCount
-curl --location --request DELETE 'http://127.0.0.1:5000/appointment/1'
 
 
 
